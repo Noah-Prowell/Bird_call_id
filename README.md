@@ -6,7 +6,8 @@ Idea 1: Bird Call ID
 data: https://www.kaggle.com/c/birdsong-recognition/data?select=train.csv
 <br />
 show a baseline dumb model, then show how you improved upon it.
-
+<br />
 Backup:
-Predict the price of bitcoin
+Predict the price of bitcoin using several different models such as RF and Boosting
+<br />
 data:  https://www.kaggle.com/mczielinski/bitcoin-historical-data
