@@ -5,9 +5,6 @@ Idea 1: Bird Call ID
 <br />
 data: https://www.kaggle.com/c/birdsong-recognition/data?select=train.csv
 <br />
-
-<br />
-Backup:
+Backup: Bitcoin price predictions
 - Predict the price of bitcoin using several different models such as RF and Boosting
-<br />
 - data:  https://www.kaggle.com/mczielinski/bitcoin-historical-data
