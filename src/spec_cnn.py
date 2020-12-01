@@ -65,7 +65,7 @@ history = model.fit(
   epochs=epochs, 
   batch_size= 32,
   callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb],
-  workers=-1,
-  validation_steps=4274//32,
-  steps_per_epoch=17099//32
+  workers=-1
+#   validation_steps=4274//32,
+#   steps_per_epoch=17099//32
 )
