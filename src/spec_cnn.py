@@ -55,10 +55,14 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-epochs=10
+epochs=10000
+checkpoint_cb = keras.callbacks.ModelCheckpoint('first_model_attmpt.h5', save_best_only= True)
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)
+tensorboard_cb = keras.callbacks.TensorBoard()
 history = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 32
+  batch_size= 32,
+  callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 )
