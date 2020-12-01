@@ -7,20 +7,27 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras import regularizers, optimizers
 import pandas as pd
 import numpy as np
+import PIL
 
 
+train = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'training',
+                                                            image_size=(255,255), batch_size=32, seed = 42)
+test = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'validation',
+                                                            image_size=(255,255), batch_size=32, seed = 42)
 
-train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'training',
-                                                            image_size=(255,255), batch_size=32)
-test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'validation',
-                                                            image_size=(255,255), batch_size=32)
 
-class_names = train.class_names
-normalization_layer = layers.experimental.preprocessing.Rescaling(1./255)
-normalized_ds = train.map(lambda x, y: (normalization_layer(x), y))
+AUTOTUNE = tf.data.experimental.AUTOTUNE
+
+train = train.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
+test = test.cache().prefetch(buffer_size=AUTOTUNE)
+
+# class_names = train.class_names
+# normalization_layer = layers.experimental.preprocessing.Rescaling(1./255)
+# normalized_ds = train.map(lambda x, y: (normalization_layer(x), y))
 
 
 model = Sequential()
+layers.experimental.preprocessing.Rescaling(1./255, input_shape=(255, 255, 3))
 model.add(Conv2D(32, (3, 3), padding='same', input_shape=(64,64,3)))
 model.add(Activation('relu'))
 model.add(Conv2D(64, (3, 3)))
