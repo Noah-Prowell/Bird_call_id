@@ -28,7 +28,7 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 
 model = Sequential()
 layers.experimental.preprocessing.Rescaling(1./255, input_shape=(255, 255, 3))
-model.add(Conv2D(32, (3, 3), padding='same', input_shape=(64,64,3)))
+model.add(Conv2D(32, (3, 3), padding='same', input_shape=(255,255,3)))
 model.add(Activation('relu'))
 model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
