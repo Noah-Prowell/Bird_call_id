@@ -11,9 +11,9 @@ import PIL
 
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'training',
-                                                            image_size=(255,255), batch_size=32, seed = 42)
+                                                            image_size=(256,256), batch_size=32, seed = 42)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'validation',
-                                                            image_size=(255,255), batch_size=32, seed = 42)
+                                                            image_size=(256,256), batch_size=32, seed = 42,shuffle=False)
 
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
@@ -27,8 +27,8 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 
 
 model = Sequential()
-layers.experimental.preprocessing.Rescaling(1./255, input_shape=(255, 255, 3))
-model.add(Conv2D(32, (3, 3), padding='same', input_shape=(255,255,3)))
+layers.experimental.preprocessing.Rescaling(1./256., input_shape=(256, 256, 3))
+model.add(Conv2D(32, (3, 3), padding='same', input_shape=(256,256,3)))
 model.add(Activation('relu'))
 model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
@@ -64,5 +64,8 @@ history = model.fit(
   validation_data=test,
   epochs=epochs, 
   batch_size= 32,
-  callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
+  callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb],
+  workers=-1,
+  validation_steps=4274//32,
+  steps_per_epoch=17099//32
 )
