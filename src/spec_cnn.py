@@ -54,3 +54,11 @@ model.add(Dense(10, activation='softmax'))
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
+
+epochs=10
+history = model.fit(
+  train,
+  validation_data=test,
+  epochs=epochs, 
+  batch_size= 32
+)
