@@ -10,9 +10,9 @@ import numpy as np
 import PIL
 
 
-train = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'training',
+train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'training',
                                                             image_size=(255,255), batch_size=32, seed = 42)
-test = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'validation',
+test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'validation',
                                                             image_size=(255,255), batch_size=32, seed = 42)
 
 
