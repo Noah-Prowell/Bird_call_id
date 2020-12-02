@@ -10,9 +10,9 @@ import numpy as np
 import PIL
 
 
-train = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'training',
+train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'training',
                                                             image_size=(256,256), batch_size=32, seed = 42)
-test = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'validation',
+test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'validation',
                                                             image_size=(256,256), batch_size=32, seed = 42,shuffle=False)
 
 
@@ -50,7 +50,7 @@ model.add(Flatten())
 model.add(Dense(512))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(10, activation='softmax'))
+model.add(Dense(264, activation='softmax'))
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
