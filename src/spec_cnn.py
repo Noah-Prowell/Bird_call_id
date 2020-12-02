@@ -61,9 +61,9 @@ model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
-model.add(Dense(4, activation='relu'))
+model.add(Dense(10, activation='relu'))
 model.add(Dropout(0.5))
-model.add(Dense(264, activation='softmax'))
+model.add(Dense(5, activation='softmax'))
 #Compile
 model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
