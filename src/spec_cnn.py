@@ -65,7 +65,7 @@ model.add(Dense(10, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(5, activation='softmax'))
 #Compile
-model.compile(optimizer='adam', loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
 # model = Sequential()
 # layers.experimental.preprocessing.Rescaling(1./256., input_shape=(256, 256, 3))
@@ -78,7 +78,7 @@ model.compile(optimizer='adam', loss=tf.keras.losses.CategoricalCrossentropy(fro
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('fifth_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('six_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
 
