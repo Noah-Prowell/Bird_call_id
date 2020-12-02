@@ -54,7 +54,7 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 # model.add(Dense(5, activation='softmax'))
 # model.compile(optimizer='adam',
 #               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy'])
+            #   metrics=['accuracy'])
 # model = Sequential()
 # layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
 # model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 3)))
