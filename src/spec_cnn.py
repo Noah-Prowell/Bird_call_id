@@ -57,7 +57,7 @@ model.compile(optimizer='adam',
 
 epochs=10000
 checkpoint_cb = keras.callbacks.ModelCheckpoint('first_model_attmpt.h5', save_best_only= True)
-early_stopping_cb = keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
 history = model.fit(
   train,
