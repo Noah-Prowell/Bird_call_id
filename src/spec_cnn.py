@@ -57,8 +57,8 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 #               metrics=['accuracy'])
 model = Sequential()
 layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
-model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(128, 128, 3)))
-model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
+model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 3)))
+model.add(Conv2D(128, kernel_size=(3, 3), padding = 'same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
@@ -79,7 +79,7 @@ model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentro
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('ten_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('ele_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -98,11 +98,11 @@ history2 = model.fit(
   callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 )
 
-acc = history2.history['accuracy']
-val_acc = history2.history['val_accuracy']
+acc = history1.history['accuracy']
+val_acc = history1.history['val_accuracy']
 
-loss = history2.history['loss']
-val_loss = history2.history['val_loss']
+loss = history1.history['loss']
+val_loss = history1.history['val_loss']
 
 epochs_range = range(160)
 
