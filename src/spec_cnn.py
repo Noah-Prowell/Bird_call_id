@@ -10,9 +10,9 @@ import numpy as np
 import PIL
 
 
-train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'training',
+train = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'training',
                                                             image_size=(256,256), batch_size=32, seed = 42)
-test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs', labels = 'inferred', validation_split = .2, subset = 'validation',
+test = tf.keras.preprocessing.image_dataset_from_directory('train_one_spec', labels = 'inferred', validation_split = .2, subset = 'validation',
                                                             image_size=(256,256), batch_size=32, seed = 42,shuffle=False)
 
 
@@ -64,8 +64,7 @@ history = model.fit(
   validation_data=test,
   epochs=epochs, 
   batch_size= 32,
-  callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb],
-  workers=-1
+  callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 #   validation_steps=4274//32,
 #   steps_per_epoch=17099//32
 )
