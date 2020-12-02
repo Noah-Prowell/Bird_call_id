@@ -8,6 +8,7 @@ from tensorflow.keras import regularizers, optimizers
 import pandas as pd
 import numpy as np
 import PIL
+import matplotlib.pyplot as plt 
 
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'training',
@@ -56,8 +57,8 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 #               metrics=['accuracy'])
 model = Sequential()
 layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
-model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(128, 128, 3)))
-model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(128, 128, 3)))
+model.add(Conv2D(128, kernel_size=(3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
@@ -78,22 +79,22 @@ model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentro
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('nine_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('ten_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
 
 history1 = model.fit(
   train,
   validation_data=test,
-  epochs=160, 
-  batch_size= 120,
+  epochs=250, 
+  batch_size= 32,
   callbacks=[checkpoint_cb, tensorboard_cb]
 )
 history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 120,
+  batch_size= 32,
   callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 )
 
