@@ -75,6 +75,7 @@ model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(256, 25
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
 model.add(Dense(264, activation='softmax'))
+model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
 checkpoint_cb = keras.callbacks.ModelCheckpoint('fifth_model.h5', save_best_only= True)
