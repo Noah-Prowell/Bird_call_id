@@ -65,7 +65,7 @@ model.add(Dense(10, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(5, activation='softmax'))
 #Compile
-model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+model.compile(optimizer='adam', loss=tf.keras.losses.CategoricalCrossentropy(), metrics=['accuracy'])
 
 # model = Sequential()
 # layers.experimental.preprocessing.Rescaling(1./256., input_shape=(256, 256, 3))
