@@ -97,4 +97,4 @@ print(model.summary())
 #   callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 #   validation_steps=4274//32,
 #   steps_per_epoch=17099//32
-)
+# )
