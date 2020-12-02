@@ -78,7 +78,7 @@ model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentro
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('eight_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('nine_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -86,13 +86,35 @@ history1 = model.fit(
   train,
   validation_data=test,
   epochs=160, 
-  batch_size= 64,
+  batch_size= 120,
   callbacks=[checkpoint_cb, tensorboard_cb]
 )
 history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 64,
+  batch_size= 120,
   callbacks=[checkpoint_cb, early_stopping_cb, tensorboard_cb]
 )
+
+acc = history2.history['accuracy']
+val_acc = history2.history['val_accuracy']
+
+loss = history2.history['loss']
+val_loss = history2.history['val_loss']
+
+epochs_range = range(160)
+
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
+
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
