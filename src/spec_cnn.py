@@ -56,10 +56,18 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('third_model_attmpt.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('fourth_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 tensorboard_cb = keras.callbacks.TensorBoard()
-history = model.fit(
+
+history1 = model.fit(
+  train,
+  validation_data=test,
+  epochs=150, 
+  batch_size= 32,
+  callbacks=[checkpoint_cb, tensorboard_cb]
+)
+history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
