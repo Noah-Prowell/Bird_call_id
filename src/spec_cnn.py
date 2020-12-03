@@ -16,14 +16,14 @@ from PIL import ImageFilter
 import os, fileinput, sys
 
 def make_more_imgs():
-    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/aldfly_t'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_one_spec/aldfly_t'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/amegfi'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_one_spec/amegfi'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
@@ -31,21 +31,21 @@ def make_more_imgs():
 
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/amepip'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_one_spec/amepip'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/astfly'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_one_spec/astfly'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/balori'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_one_spec/balori'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
