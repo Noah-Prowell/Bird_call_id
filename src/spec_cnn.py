@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import PIL
 import matplotlib.pyplot as plt 
-from tensorflow.keras.metrics import CategoricalAccuracy
+from tensorflow.keras.metrics import Accuracy
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
@@ -86,10 +86,10 @@ model.add(Flatten())
 model.add(Dense(100, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(5, activation='softmax'))
-model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
+model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=Accuracy())
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('nineteen_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('twenty_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -128,4 +128,4 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
-plt.savefig('nineteen.png')
+plt.savefig('twenty.png')
