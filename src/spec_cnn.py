@@ -96,7 +96,7 @@ early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 history1 = model.fit(
   train,
   validation_data=test,
-  epochs=10000, 
+  epochs=5000, 
   batch_size= 10,
   callbacks=[checkpoint_cb]
 )
@@ -108,8 +108,8 @@ history2 = model.fit(
   callbacks=[checkpoint_cb, early_stopping_cb]
 )
 
-acc = history1.history['accuracy']
-val_acc = history1.history['val_accuracy']
+acc = history1.history['categorical_accuracy']
+val_acc = history1.history['val_categorical_accuracy']
 
 loss = history1.history['loss']
 val_loss = history1.history['val_loss']
