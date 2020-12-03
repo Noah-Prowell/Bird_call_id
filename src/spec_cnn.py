@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import PIL
 import matplotlib.pyplot as plt 
-from tensorflow.keras.metrics import Accuracy
+from tensorflow.keras.metrics import CategoricalAccuracy
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
