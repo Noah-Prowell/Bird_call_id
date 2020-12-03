@@ -19,14 +19,14 @@ def make_more_imgs():
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/aldfly_t'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
-        fil_img = img.filter(ImageFilter.MinFilter)
+        fil_img = img.filter(ImageFilter.CONTOUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         fil_img.save(name + '_filter_min' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amegfi'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
-        fil_img = img.filter(ImageFilter.MinFilter)
+        fil_img = img.filter(ImageFilter.CONTOUR)
         (name, extension) = os.path.splitext(entry.path)
 
         # Save with "_blur" added to the filename
@@ -34,26 +34,26 @@ def make_more_imgs():
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amepip'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
-        fil_img = img.filter(ImageFilter.MinFilter)
+        fil_img = img.filter(ImageFilter.CONTOUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         fil_img.save(name + '_filter_min' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/astfly'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
-        fil_img = img.filter(ImageFilter.MinFilter)
+        fil_img = img.filter(ImageFilter.CONTOUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         fil_img.save(name + '_filter_min' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/balori'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
-        fil_img = img.filter(ImageFilter.MinFilter)
+        fil_img = img.filter(ImageFilter.CONTOUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         fil_img.save(name + '_filter_min' + extension)
 ###
-# make_more_imgs()
+make_more_imgs()
 ###
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
@@ -89,7 +89,7 @@ model.add(Dense(5, activation='softmax'))
 model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('twentythree_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -128,4 +128,4 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
-plt.savefig('twentythree.png')
+plt.savefig('twentyfour.png')
