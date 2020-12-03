@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.metrics import CategoricalAccuracy
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
-                                                            image_size=(128,128), batch_size=32, seed = 42)
+                                                            image_size=(128,128), batch_size=32, seed = None)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'validation',
-                                                            image_size=(128,128), batch_size=32, seed = 42)
+                                                            image_size=(128,128), batch_size=32, seed = None)
 
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
@@ -95,14 +95,14 @@ early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 
 history1 = model.fit(
   train,
-  validation_data=test,
+  y = test,
   epochs=5000, 
   batch_size= 10,
   callbacks=[checkpoint_cb]
 )
 history2 = model.fit(
   train,
-  validation_data=test,
+  y=test,
   epochs=epochs, 
   batch_size= 10,
   callbacks=[checkpoint_cb, early_stopping_cb]
