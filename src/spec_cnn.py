@@ -16,14 +16,14 @@ from PIL import ImageFilter
 import os, fileinput, sys
 
 def make_more_imgs():
-    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/aldfly_t'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/aldfly_t'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/amegfi'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amegfi'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
@@ -31,21 +31,21 @@ def make_more_imgs():
 
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/amepip'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amepip'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/astfly'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/astfly'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
         img.save(name + '_filter' + extension)
-    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/balori'): 
+    for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/balori'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
