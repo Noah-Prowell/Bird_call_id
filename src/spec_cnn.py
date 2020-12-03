@@ -11,9 +11,9 @@ import PIL
 import matplotlib.pyplot as plt 
 from tensorflow.keras.metrics import CategoricalAccuracy
 
-train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'training',
+train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
-test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'validation',
+test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'validation',
                                                             image_size=(128,128), batch_size=32, seed = 42)
 
 
@@ -69,8 +69,8 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
 model = Sequential()
-layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
-model.add(Conv2D(32, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 3)))
+layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 1))
+model.add(Conv2D(32, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 1)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
 model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu'))
@@ -96,15 +96,15 @@ early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 history1 = model.fit(
   train,
   validation_data=test,
-  epochs=250, 
-  batch_size= 64,
+  epochs=10000, 
+  batch_size= 32,
   callbacks=[checkpoint_cb]
 )
 history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 64,
+  batch_size= 32,
   callbacks=[checkpoint_cb, early_stopping_cb]
 )
 
