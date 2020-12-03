@@ -97,14 +97,14 @@ history1 = model.fit(
   train,
   validation_data=test,
   epochs=250, 
-  batch_size= 28,
+  batch_size= 10,
   callbacks=[checkpoint_cb]
 )
 history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 32,
+  batch_size= 10,
   callbacks=[checkpoint_cb, early_stopping_cb]
 )
 
