@@ -53,7 +53,7 @@ def make_more_imgs():
         # Save with "_blur" added to the filename
         fil_img.save(name + '_filter_min' + extension)
 ###
-make_more_imgs()
+# make_more_imgs()
 ###
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
@@ -68,64 +68,68 @@ test = test.cache().prefetch(buffer_size=AUTOTUNE)
 
 
 
-model = Sequential()
-layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 1))
-model.add(Conv2D(32, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 1)))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-model.add(Conv2D(128, kernel_size=(3, 3),padding = 'same', activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-model.add(Flatten())
-model.add(Dense(100, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(5, activation='softmax'))
-model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
-print(model.summary())
-epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best_only= True)
-early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
-# tensorboard_cb = keras.callbacks.TensorBoard()
+# model = Sequential()
+# layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 1))
+# model.add(Conv2D(32, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 1)))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.2))
+# model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.2))
+# model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.2))
+# model.add(Conv2D(128, kernel_size=(3, 3),padding = 'same', activation='relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.2))
+# model.add(Flatten())
+# model.add(Dense(100, activation='relu'))
+# model.add(Dropout(0.2))
+# model.add(Dense(5, activation='softmax'))
+# model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
+# print(model.summary())
+# epochs=10000
+# checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best_only= True)
+# early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
+# # tensorboard_cb = keras.callbacks.TensorBoard()
 
-history1 = model.fit(
-  train,
-  validation_data=test,
-  epochs=1200, 
-  batch_size= 10,
-  callbacks=[checkpoint_cb]
-)
-history2 = model.fit(
-  train,
-  validation_data=test,
-  epochs=epochs, 
-  batch_size= 10,
-  callbacks=[checkpoint_cb, early_stopping_cb]
-)
+# history1 = model.fit(
+#   train,
+#   validation_data=test,
+#   epochs=1200, 
+#   batch_size= 10,
+#   callbacks=[checkpoint_cb]
+# )
+# history2 = model.fit(
+#   train,
+#   validation_data=test,
+#   epochs=epochs, 
+#   batch_size= 10,
+#   callbacks=[checkpoint_cb, early_stopping_cb]
+# )
 
-acc = history1.history['categorical_accuracy']
-val_acc = history1.history['val_categorical_accuracy']
+# acc = history1.history['categorical_accuracy']
+# val_acc = history1.history['val_categorical_accuracy']
 
-loss = history1.history['loss']
-val_loss = history1.history['val_loss']
+# loss = history1.history['loss']
+# val_loss = history1.history['val_loss']
 
-epochs_range = range(1200)
+# epochs_range = range(1200)
 
-plt.figure(figsize=(8, 8))
-plt.subplot(1, 2, 1)
-plt.plot(epochs_range, acc, label='Training Accuracy')
-plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-plt.legend(loc='lower right')
-plt.title('Training and Validation Accuracy')
+# plt.figure(figsize=(8, 8))
+# plt.subplot(1, 2, 1)
+# plt.plot(epochs_range, acc, label='Training Accuracy')
+# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+# plt.legend(loc='lower right')
+# plt.title('Training and Validation Accuracy')
 
-plt.subplot(1, 2, 2)
-plt.plot(epochs_range, loss, label='Training Loss')
-plt.plot(epochs_range, val_loss, label='Validation Loss')
-plt.legend(loc='upper right')
-plt.title('Training and Validation Loss')
-plt.savefig('twentyfour.png')
+# plt.subplot(1, 2, 2)
+# plt.plot(epochs_range, loss, label='Training Loss')
+# plt.plot(epochs_range, val_loss, label='Validation Loss')
+# plt.legend(loc='upper right')
+# plt.title('Training and Validation Loss')
+# plt.savefig('twentyfour.png')
+
+model = keras.models.load_model('twentythree_model.h5')
+prediction = model.predict(test)
+predicted_index = np.argmax(prediction, axis=1)
