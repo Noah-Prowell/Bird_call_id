@@ -22,7 +22,7 @@ def make_more_imgs():
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
-        img.save(name + '_filter' + extension)
+        fil_img.save(name + '_filter' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amegfi'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
@@ -30,28 +30,28 @@ def make_more_imgs():
         (name, extension) = os.path.splitext(entry.path)
 
         # Save with "_blur" added to the filename
-        img.save(name + '_filter' + extension)
+        fil_img.save(name + '_filter' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/amepip'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
-        img.save(name + '_filter' + extension)
+        fil_img.save(name + '_filter' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/astfly'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
-        img.save(name + '_filter' + extension)
+        fil_img.save(name + '_filter' + extension)
     for entry in os.scandir('/home/ubuntu/Capstone_2/train_imgs/five_test/balori'): 
         # if entry.path.endswith('.png'):
         img = Image.open(entry.path)
         fil_img = img.filter(ImageFilter.BLUR)
         (name, extension) = os.path.splitext(entry.path)
         # Save with "_blur" added to the filename
-        img.save(name + '_filter' + extension)
+        fil_img.save(name + '_filter' + extension)
 ###
 make_more_imgs()
 ###
