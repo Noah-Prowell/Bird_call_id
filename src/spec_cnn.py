@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 
 
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'training',
-                                                            image_size=(128,128,3), batch_size=32, seed = 42)
+                                                            image_size=(128,128), batch_size=32, seed = 42)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred', validation_split = .2, subset = 'validation',
-                                                            image_size=(128,128,3), batch_size=32, seed = 42,shuffle=False)
+                                                            image_size=(128,128), batch_size=32, seed = 42,shuffle=False)
 
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
