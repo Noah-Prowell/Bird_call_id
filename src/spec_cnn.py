@@ -89,43 +89,43 @@ model.add(Dense(5, activation='softmax'))
 model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('seventeen_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('eighteen_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # tensorboard_cb = keras.callbacks.TensorBoard()
 
-# history1 = model.fit(
-#   train,
-#   validation_data=test,
-#   epochs=250, 
-#   batch_size= 28,
-#   callbacks=[checkpoint_cb]
-# )
-# history2 = model.fit(
-#   train,
-#   validation_data=test,
-#   epochs=epochs, 
-#   batch_size= 32,
-#   callbacks=[checkpoint_cb, early_stopping_cb]
-# )
+history1 = model.fit(
+  train,
+  validation_data=test,
+  epochs=250, 
+  batch_size= 28,
+  callbacks=[checkpoint_cb]
+)
+history2 = model.fit(
+  train,
+  validation_data=test,
+  epochs=epochs, 
+  batch_size= 32,
+  callbacks=[checkpoint_cb, early_stopping_cb]
+)
 
-# acc = history1.history['accuracy']
-# val_acc = history1.history['val_accuracy']
+acc = history1.history['accuracy']
+val_acc = history1.history['val_accuracy']
 
-# loss = history1.history['loss']
-# val_loss = history1.history['val_loss']
+loss = history1.history['loss']
+val_loss = history1.history['val_loss']
 
-# epochs_range = range(250)
+epochs_range = range(250)
 
-# plt.figure(figsize=(8, 8))
-# plt.subplot(1, 2, 1)
-# plt.plot(epochs_range, acc, label='Training Accuracy')
-# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-# plt.legend(loc='lower right')
-# plt.title('Training and Validation Accuracy')
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
 
-# plt.subplot(1, 2, 2)
-# plt.plot(epochs_range, loss, label='Training Loss')
-# plt.plot(epochs_range, val_loss, label='Validation Loss')
-# plt.legend(loc='upper right')
-# plt.title('Training and Validation Loss')
-# plt.savefig('seventeen.png')
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.savefig('eightteen.png')
