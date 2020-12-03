@@ -86,7 +86,7 @@ model.add(Flatten())
 model.add(Dense(100, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(5, activation='softmax'))
-model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=Accuracy())
+model.compile(optimizer='adam', loss="categorical_crossentropy", metrics=Accuracy())
 print(model.summary())
 epochs=10000
 checkpoint_cb = keras.callbacks.ModelCheckpoint('twenty_model.h5', save_best_only= True)
