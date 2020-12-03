@@ -61,10 +61,10 @@ test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test
                                                             image_size=(128,128), batch_size=32, seed = 42)
 
 
-AUTOTUNE = tf.data.experimental.AUTOTUNE
+# AUTOTUNE = tf.data.experimental.AUTOTUNE
 
-train = train.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
-test = test.cache().prefetch(buffer_size=AUTOTUNE)
+# train = train.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
+# test = test.cache().prefetch(buffer_size=AUTOTUNE)
 
 
 
