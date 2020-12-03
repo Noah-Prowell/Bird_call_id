@@ -95,14 +95,14 @@ early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 
 history1 = model.fit(
   train,
-  y = test,
+  validation_data=test,
   epochs=8000, 
   batch_size= 10,
   callbacks=[checkpoint_cb]
 )
 history2 = model.fit(
   train,
-  y=test,
+  validation_data=test,
   epochs=epochs, 
   batch_size= 10,
   callbacks=[checkpoint_cb, early_stopping_cb]
