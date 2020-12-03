@@ -89,7 +89,7 @@ model.add(Dense(5, activation='softmax'))
 model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
 print(model.summary())
 epochs=10000
-checkpoint_cb = keras.callbacks.ModelCheckpoint('twenty_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyone_model.h5', save_best_only= True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -97,14 +97,14 @@ history1 = model.fit(
   train,
   validation_data=test,
   epochs=10000, 
-  batch_size= 32,
+  batch_size= 10,
   callbacks=[checkpoint_cb]
 )
 history2 = model.fit(
   train,
   validation_data=test,
   epochs=epochs, 
-  batch_size= 32,
+  batch_size= 10,
   callbacks=[checkpoint_cb, early_stopping_cb]
 )
 
@@ -128,4 +128,4 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
-plt.savefig('twenty.png')
+plt.savefig('twentyone.png')
