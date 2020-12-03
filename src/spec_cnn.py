@@ -10,7 +10,51 @@ import numpy as np
 import PIL
 import matplotlib.pyplot as plt 
 from tensorflow.keras.metrics import CategoricalAccuracy
+import os
+from PIL import Image 
+from PIL import ImageFilter 
+import os, fileinput, sys
 
+def make_more_imgs()
+    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/aldfly_t'): 
+        # if entry.path.endswith('.png'):
+        img = Image.open(entry.path)
+        fil_img = img.filter(ImageFilter.BLUR)
+        (name, extension) = os.path.splitext(entry.path)
+        # Save with "_blur" added to the filename
+        img.save(name + '_filter' + extension)
+    for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/amegfi'): 
+        # if entry.path.endswith('.png'):
+        img = Image.open(entry.path)
+        fil_img = img.filter(ImageFilter.BLUR)
+        (name, extension) = os.path.splitext(entry.path)
+
+        # Save with "_blur" added to the filename
+        img.save(name + '_filter' + extension)
+     for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/amepip'): 
+        # if entry.path.endswith('.png'):
+        img = Image.open(entry.path)
+        fil_img = img.filter(ImageFilter.BLUR)
+        (name, extension) = os.path.splitext(entry.path)
+        # Save with "_blur" added to the filename
+        img.save(name + '_filter' + extension)
+     for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/astfly'): 
+        # if entry.path.endswith('.png'):
+        img = Image.open(entry.path)
+        fil_img = img.filter(ImageFilter.BLUR)
+        (name, extension) = os.path.splitext(entry.path)
+        # Save with "_blur" added to the filename
+        img.save(name + '_filter' + extension)
+     for entry in os.scandir('/home/noahprowell/galvanize/capstones/Capstone_2/train_one_spec/balori'): 
+        # if entry.path.endswith('.png'):
+        img = Image.open(entry.path)
+        fil_img = img.filter(ImageFilter.BLUR)
+        (name, extension) = os.path.splitext(entry.path)
+        # Save with "_blur" added to the filename
+        img.save(name + '_filter' + extension)
+###
+make_more_imgs()
+###
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'validation',
@@ -22,51 +66,7 @@ AUTOTUNE = tf.data.experimental.AUTOTUNE
 train = train.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 test = test.cache().prefetch(buffer_size=AUTOTUNE)
 
-# class_names = train.class_names
-# normalization_layer = layers.experimental.preprocessing.Rescaling(1./255)
-# normalized_ds = train.map(lambda x, y: (normalization_layer(x), y))
 
-
-# model = Sequential()
-# layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
-# model.add(Conv2D(32, (2, 2), padding='same', input_shape=(128,128,3)))
-# model.add(Activation('relu'))
-# model.add(Conv2D(64, (2, 2)))
-# model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
-# model.add(Dropout(0.25))
-# model.add(Conv2D(64, (2, 2), padding='same'))
-# model.add(Activation('relu'))
-# model.add(Conv2D(64, (2, 2)))
-# model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
-# model.add(Dropout(0.5))
-# model.add(Conv2D(128, (2, 2), padding='same'))
-# model.add(Activation('relu'))
-# model.add(Conv2D(128, (2, 2)))
-# model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
-# model.add(Dropout(0.5))
-# model.add(Flatten())
-# model.add(Dense(512))
-# model.add(Activation('relu'))
-# model.add(Dropout(0.5))
-# model.add(Dense(5, activation='softmax'))
-# model.compile(optimizer='adam',
-#               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-            #   metrics=['accuracy'])
-# model = Sequential()
-# layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 3))
-# model.add(Conv2D(64, kernel_size=(3, 3),padding = 'same', activation='relu', input_shape=(128, 128, 3)))
-# model.add(Conv2D(128, kernel_size=(3, 3), padding = 'same', activation='relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
-# model.add(Dropout(0.25))
-# model.add(Flatten())
-# model.add(Dense(6, activation='relu'))
-# model.add(Dropout(0.5))
-# model.add(Dense(5, activation='softmax'))
-# #Compile
-# model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
 model = Sequential()
 layers.experimental.preprocessing.Rescaling(1./255., input_shape=(128, 128, 1))
@@ -93,39 +93,39 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('twentytwo_model.h5', save_best_
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # tensorboard_cb = keras.callbacks.TensorBoard()
 
-history1 = model.fit(
-  train,
-  validation_data=test,
-  epochs=8000, 
-  batch_size= 10,
-  callbacks=[checkpoint_cb]
-)
-history2 = model.fit(
-  train,
-  validation_data=test,
-  epochs=epochs, 
-  batch_size= 10,
-  callbacks=[checkpoint_cb, early_stopping_cb]
-)
+# history1 = model.fit(
+#   train,
+#   validation_data=test,
+#   epochs=8000, 
+#   batch_size= 10,
+#   callbacks=[checkpoint_cb]
+# )
+# history2 = model.fit(
+#   train,
+#   validation_data=test,
+#   epochs=epochs, 
+#   batch_size= 10,
+#   callbacks=[checkpoint_cb, early_stopping_cb]
+# )
 
-acc = history1.history['categorical_accuracy']
-val_acc = history1.history['val_categorical_accuracy']
+# acc = history1.history['categorical_accuracy']
+# val_acc = history1.history['val_categorical_accuracy']
 
-loss = history1.history['loss']
-val_loss = history1.history['val_loss']
+# loss = history1.history['loss']
+# val_loss = history1.history['val_loss']
 
-epochs_range = range(8000)
+# epochs_range = range(8000)
 
-plt.figure(figsize=(8, 8))
-plt.subplot(1, 2, 1)
-plt.plot(epochs_range, acc, label='Training Accuracy')
-plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-plt.legend(loc='lower right')
-plt.title('Training and Validation Accuracy')
+# plt.figure(figsize=(8, 8))
+# plt.subplot(1, 2, 1)
+# plt.plot(epochs_range, acc, label='Training Accuracy')
+# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+# plt.legend(loc='lower right')
+# plt.title('Training and Validation Accuracy')
 
-plt.subplot(1, 2, 2)
-plt.plot(epochs_range, loss, label='Training Loss')
-plt.plot(epochs_range, val_loss, label='Validation Loss')
-plt.legend(loc='upper right')
-plt.title('Training and Validation Loss')
-plt.savefig('twentytwo.png')
+# plt.subplot(1, 2, 2)
+# plt.plot(epochs_range, loss, label='Training Loss')
+# plt.plot(epochs_range, val_loss, label='Validation Loss')
+# plt.legend(loc='upper right')
+# plt.title('Training and Validation Loss')
+# plt.savefig('twentytwo.png')
