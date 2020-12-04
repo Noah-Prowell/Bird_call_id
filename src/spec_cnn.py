@@ -58,9 +58,9 @@ def make_more_imgs():
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'validation',
-                                                            image_size=(128,128), batch_size=32, seed = 42)
+                                                            image_size=(128,128), batch_size=6000, seed = 42)
 
-
+# test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test/amegfi', labels = 'inferred',color_mode= 'grayscale',image_size=(128,128), batch_size=32, seed = 42)
 # AUTOTUNE = tf.data.experimental.AUTOTUNE
 
 # train = train.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
