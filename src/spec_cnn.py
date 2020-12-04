@@ -89,7 +89,7 @@ test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test
 # model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False), metrics=CategoricalAccuracy())
 # print(model.summary())
 # epochs=10000
-# checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best_only= True)
 # early_stopping_cb = keras.callbacks.EarlyStopping(patience=10)
 # # tensorboard_cb = keras.callbacks.TensorBoard()
 
@@ -131,5 +131,12 @@ test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test
 # plt.savefig('twentyfour.png')
 
 model = keras.models.load_model('twentythree_model.h5')
-prediction = model.predict(test)
-predicted_index = np.argmax(prediction, axis=1)
+history3 = model.fit(
+  train,
+  validation_data=test,
+  epochs=200, 
+  batch_size= 10,
+  callbacks=[checkpoint_cb]
+)
+# prediction = model.predict(test)
+# predicted_index = np.argmax(prediction, axis=1)
