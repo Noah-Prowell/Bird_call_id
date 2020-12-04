@@ -58,7 +58,7 @@ def make_more_imgs():
 train = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'training',
                                                             image_size=(128,128), batch_size=32, seed = 42)
 test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test', labels = 'inferred',color_mode= 'grayscale', validation_split = .2, subset = 'validation',
-                                                            image_size=(128,128), batch_size=6000, seed = 42)
+                                                            image_size=(128,128), batch_size=32, seed = 42)
 
 # test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test/amegfi', labels = 'inferred',color_mode= 'grayscale',image_size=(128,128), batch_size=32, seed = 42)
 # AUTOTUNE = tf.data.experimental.AUTOTUNE
@@ -140,3 +140,24 @@ history3 = model.fit(
 )
 # prediction = model.predict(test)
 # predicted_index = np.argmax(prediction, axis=1)
+# acc = history1.history['categorical_accuracy']
+# val_acc = history1.history['val_categorical_accuracy']
+
+# loss = history1.history['loss']
+# val_loss = history1.history['val_loss']
+
+# epochs_range = range(200)
+
+# plt.figure(figsize=(8, 8))
+# plt.subplot(1, 2, 1)
+# plt.plot(epochs_range, acc, label='Training Accuracy')
+# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+# plt.legend(loc='lower right')
+# plt.title('Training and Validation Accuracy')
+
+# plt.subplot(1, 2, 2)
+# plt.plot(epochs_range, loss, label='Training Loss')
+# plt.plot(epochs_range, val_loss, label='Validation Loss')
+# plt.legend(loc='upper right')
+# plt.title('Training and Validation Loss')
+# plt.savefig('twentythree_two.png')
