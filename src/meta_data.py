@@ -7,6 +7,7 @@ import os, fileinput, sys
 from skimage.filters import gaussian
 import tensorflow as tf
 from tensorflow import keras
+from sklearn.metrics import confusion_matrix
 # df = pd.read_csv('data/train.csv')
 
 # # columns to use: pitch, speed, latitude, longitude, elevation, volume
@@ -36,5 +37,5 @@ test = tf.keras.preprocessing.image_dataset_from_directory('train_imgs/five_test
                                                             image_size=(128,128), batch_size=6000, seed = 42)
 
 model = keras.models.load_model('twentythree_model.h5')
-prediction = model.predict()
+prediction = model.predict(test)
 predicted_index = np.argmax(prediction, axis=1)
