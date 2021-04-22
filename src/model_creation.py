@@ -46,7 +46,7 @@ def create_transfer_model(input_size, n_categories, weights = 'imagenet'):
         
         return model
 
-model = create_transfer_model((255,255,3),5)
+model = create_transfer_model((3,255,255),5)
 _ = change_trainable_layers(model, 780)
 print_model_properties(model, 778)
 model.compile(optimizer=RMSprop(lr=0.0005), loss='categorical_crossentropy', metrics=['accuracy'])
@@ -56,7 +56,7 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn.h5', save_best_o
 history = model.fit(
   train_generator,
   validation_data=validation_generator,
-  epochs=200, 
+  epochs=20, 
   batch_size= 10,
   callbacks=[checkpoint_cb]
 )
