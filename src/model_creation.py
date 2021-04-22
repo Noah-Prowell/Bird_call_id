@@ -56,7 +56,7 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn.h5', save_best_o
 history = model.fit(
   train_generator,
   validation_data=validation_generator,
-  epochs=20, 
+  epochs=200, 
   batch_size= 10,
   callbacks=[checkpoint_cb]
 )
