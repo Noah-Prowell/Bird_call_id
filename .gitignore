@@ -2,4 +2,4 @@
 /data/
 *.h5
 .ipynb_checkpoints
-
+/train_imgs/
