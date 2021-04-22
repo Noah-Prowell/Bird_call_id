@@ -47,21 +47,21 @@ def create_transfer_model(input_size, n_categories, weights = 'imagenet'):
         return model
 
 model = create_transfer_model((3,255,255),5)
-_ = change_trainable_layers(model, 780)
-print_model_properties(model, 778)
+_ = change_trainable_layers(model, 774)
+# print_model_properties(model, 750)
 model.compile(optimizer=RMSprop(lr=0.0005), loss='categorical_crossentropy', metrics=['accuracy'])
 
-checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu.h5', save_best_only= True)
 
 history = model.fit(
-  train_generator,
-  validation_data=validation_generator,
-  epochs=200, 
-  batch_size= 10,
-  callbacks=[checkpoint_cb]
-)
+        train_generator,
+        validation_data=validation_generator,
+        epochs=200, 
+        batch_size= 10,
+        callbacks=[checkpoint_cb]
+        )
 
-acc = history.history['categorical_accuracy']
-val_acc = history.history['val_categorical_accuracy']
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
 loss = history.history['loss']
 val_loss = history.history['val_loss']
