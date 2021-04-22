@@ -41,6 +41,7 @@ def create_transfer_model(input_size, n_categories, weights = 'imagenet'):
                           input_shape=input_size)
         model = base_model.output
         model = GlobalAveragePooling2D()(model)
+        model = Dropout(.2)(model)
         predictions = Dense(n_categories, activation='softmax')(model)
         model = Model(inputs=base_model.input, outputs=predictions)
         
@@ -51,7 +52,7 @@ _ = change_trainable_layers(model, 774)
 # print_model_properties(model, 750)
 model.compile(optimizer=RMSprop(lr=0.0005), loss='categorical_crossentropy', metrics=['accuracy'])
 
-checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu.h5', save_best_only= True)
+checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu_wdrop.h5', save_best_only= True)
 
 history = model.fit(
         train_generator,
