@@ -57,7 +57,7 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu_wdrop.h5',
 history = model.fit(
         train_generator,
         validation_data=validation_generator,
-        epochs=200, 
+        epochs=100, 
         batch_size= 10,
         callbacks=[checkpoint_cb]
         )
