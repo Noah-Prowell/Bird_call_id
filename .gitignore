@@ -1,2 +1,5 @@
 *.mp3
 /data/
+*.h5
+.ipynb_checkpoints
+

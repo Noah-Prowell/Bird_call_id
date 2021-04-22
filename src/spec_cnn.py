@@ -108,13 +108,13 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best
 #   callbacks=[checkpoint_cb, early_stopping_cb]
 # )
 
-# acc = history1.history['categorical_accuracy']
-# val_acc = history1.history['val_categorical_accuracy']
+# acc = history3.history['categorical_accuracy']
+# val_acc = history3.history['val_categorical_accuracy']
 
-# loss = history1.history['loss']
-# val_loss = history1.history['val_loss']
+# loss = history3.history['loss']
+# val_loss = history3.history['val_loss']
 
-# epochs_range = range(1200)
+# epochs_range = range(200)
 
 # plt.figure(figsize=(8, 8))
 # plt.subplot(1, 2, 1)
@@ -128,7 +128,7 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best
 # plt.plot(epochs_range, val_loss, label='Validation Loss')
 # plt.legend(loc='upper right')
 # plt.title('Training and Validation Loss')
-# plt.savefig('twentyfour.png')
+# plt.savefig('twentythree_cont.png')
 
 model = keras.models.load_model('twentythree_model.h5')
 history3 = model.fit(
