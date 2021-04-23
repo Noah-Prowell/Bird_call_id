@@ -13,3 +13,13 @@ My initial neural network was a simple CNN with only around 4 million paramaters
 <p align="center">
     <img src="twentythree_cont.png" size = '800x800'/>
 </p>
+<br/>
+Obviously this is not a great model and so I wanted to improve upon it.
+
+## Transfer Learning
+In an attempt to improve my model I employed the technique of transfer learning to improve my results.  I chose to do this instead of trying to continue my current model because theres only so much I can do with my simple neural network.  The transfer learning models available from Tensorflow are extremely powerful and pretrained for much longer than I ever could with my model making them perfect for this problem.  The transfer model I chose to use is the Inception-ResNet V2 using the pretrained imagenet weights.  Using this model proved to be extremely successful!  Using this technique I was able to get my training accuracy to 99.99% and my validation accuracy to 60% which is a massive improvment!  Below is is an example of what the model looks like trained to 1000 epochs which is excessive, but I wanted to see where all of my accuracies and losses were moving to and whether they were still improving or not.
+
+<p align="center">
+    <img src=".png" size = '800x800'/>
+</p>
+
