@@ -23,13 +23,13 @@ train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale = 1./255
 test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 
 train_generator = train_datagen.flow_from_directory(
-        'five_cat_train_img/train',
+        'img_dataset/train',
         color_mode='rgb',
         batch_size=32,
         class_mode='categorical')
 
 validation_generator = test_datagen.flow_from_directory(
-        'five_cat_train_img/validation',
+        'img_dataset/test',
         color_mode='rgb',
         batch_size=32,
         class_mode='categorical')
@@ -48,17 +48,17 @@ def create_transfer_model(input_size, n_categories, weights = 'imagenet'):
         
         return model
 
-model = create_transfer_model((3,255,255),5)
+model = create_transfer_model((3,255,255),264)
 _ = change_trainable_layers(model, 774)
 print_model_properties(model, 770)
 model.compile(optimizer=RMSprop(lr=0.00005, momentum=.9), loss='categorical_crossentropy', metrics=['accuracy'])
 
-checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu_wdrop_4.h5', save_best_only= True)
-
+checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_all_classes.h5', save_best_only= True)
+epochs = 100
 history = model.fit(
         train_generator,
         validation_data=validation_generator,
-        epochs=1000, 
+        epochs=epochs, 
         batch_size= 10,
         callbacks=[checkpoint_cb]
         )
@@ -68,7 +68,7 @@ val_acc = history.history['val_accuracy']
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 
-epochs_range = range(100)
+epochs_range = range(epochs)
 
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
@@ -82,4 +82,4 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
-plt.savefig('thousand_epochs.png')
+plt.savefig('full_data.png')
