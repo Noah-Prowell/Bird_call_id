@@ -18,7 +18,7 @@ def change_trainable_layers(model, trainable_index):
     for layer in model.layers[trainable_index:]:
         layer.trainable = True
 
-train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale = 1./255., width_shift_range=0.2)
+train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale = 1./255., width_shift_range=0.3)
 test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 
 train_generator = train_datagen.flow_from_directory(
@@ -50,7 +50,7 @@ def create_transfer_model(input_size, n_categories, weights = 'imagenet'):
 model = create_transfer_model((3,255,255),5)
 _ = change_trainable_layers(model, 774)
 print_model_properties(model, 770)
-model.compile(optimizer=RMSprop(lr=0.0005), loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=RMSprop(lr=0.00005, momentum=.9), loss='categorical_crossentropy', metrics=['accuracy'])
 
 checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_onebu_wdrop_4.h5', save_best_only= True)
 
