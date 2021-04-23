@@ -114,7 +114,7 @@ checkpoint_cb = keras.callbacks.ModelCheckpoint('twentyfour_model.h5', save_best
 # loss = history3.history['loss']
 # val_loss = history3.history['val_loss']
 
-# epochs_range = range(200)
+# epochs_range = range(100)
 
 # plt.figure(figsize=(8, 8))
 # plt.subplot(1, 2, 1)
