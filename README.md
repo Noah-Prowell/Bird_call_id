@@ -8,5 +8,6 @@ My method for tackling this classification problem is to change each adio file i
 ## Initial Model
 My initial neural network was a simple CNN with only around 4 million paramaters to train on, which for a simple neural network is not a tiny amount but certainly is not the largest there could be.  This model was a constant struggle to get to see the patterns that are in these images.  In the ned after days of tinkering and training the model I was only able to get it to a measly 32% accuracy, and in this case random guessing is a 20% accuracy, so my model is not doing well at picking up the patterns in my bird calls.
 
-<img src="twenty_three_cont.jpg"
-     style="float: left; margin-right: 10px;" />
+<p align="center">
+    <img src="twenty_three_cont.png" size = '800x800'/>
+</p>
