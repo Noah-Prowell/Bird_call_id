@@ -54,7 +54,7 @@ print_model_properties(model, 770)
 model.compile(optimizer=RMSprop(lr=0.00005, momentum=.9), loss='categorical_crossentropy', metrics=['accuracy'])
 
 checkpoint_cb = keras.callbacks.ModelCheckpoint('transfer_learn_all_classes.h5', save_best_only= True)
-epochs = 100
+epochs = 200
 history = model.fit(
         train_generator,
         validation_data=validation_generator,
@@ -82,4 +82,4 @@ plt.plot(epochs_range, loss, label='Training Loss')
 plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
-plt.savefig('full_data.png')
+plt.savefig('full_data_200.png')
