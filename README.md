@@ -38,6 +38,6 @@ This is not bad for trainging on five classes.  It is time to move onto the full
 Below are my results after 200 epochs of training on AWS for the full 264 classes.  Random guessing in this case is 1/264 or .038% accuracy.  My neural network is overfitting to the training data a bit, which is a consequence of using such a powerful and large neural network.  I will be continuing to imrpove the model to the best it can get to.
 <br>
 <p align="center">
-    <img src="thousand_epochs.png" size = '400x400'/>
+    <img src="full_data_200.png" size = '400x400'/>
 </p>
 
