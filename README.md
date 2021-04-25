@@ -1,9 +1,18 @@
 # Bird Call ID
 
-My objective for this project is to be able to predict the species of a bird given their call.  My data is was provided by kaggle and is a huge data set of over 20,000 audio files with over 250 bird species.  Each bird species has a range of 20 - 100 different audio files to make predicitons on.  
+## Objective
+My objective for this project is to be able to predict the species of a bird given their call.  This is a problem faced by real world scientists who would like to be able to identify a bird wihtout even seeing them physically.  This has lots of practical applications for not just birds in North America but bird species around the world.  
+
+## Data
+My data is was provided by kaggle and is a huge data set of over 20,000 audio files with 264 bird species.  Each bird species has a range of 30 - 100 different audio files to make predicitons on.  Each bird species is not necessarily recorded in the same location all of the time.  And there are various recording devices used for each recording, which maakes the background noise vary greatly.  
+<br>
+Link to audio files if you would like to listen to some of them:[Link](https://www.kaggle.com/imoore/xenocanto-bird-recordings-dataset) 
 
 ## Method to the Madness
-My method for tackling this classification problem is to change each adio file into a spectrogram image.  The reason for doing this is to encompass all the features of the audio file into an image that I can then use a CNN to train on the images and make predictions.  CNN's are very powerful neural networks and are trainable on a variety of different images making them perfect to try and solve this problem.  To make this problem a bit simpler to start I trained on only 5 classes instead of 254.  
+- Change each audio file into a spectrogram so that all of the audio is encompassed in a single image
+- Use a CNN to train on the spectrograms and make predicitons
+- Start of simple with only 5 classes and see how well my model is performing
+- Once I am satisfied, move onto the full 264 classes
 
 ![Bird](160820341-480px.jpg)
 
@@ -13,14 +22,22 @@ My initial neural network was a simple CNN with only around 4 million paramaters
 <p align="center">
     <img src="twentythree_cont.png" size = '600x600'/>
 </p>
-<br/>
+<br>
 Obviously this is not a great model and so I wanted to improve upon it.
 
 ## Transfer Learning
 In an attempt to improve my model I employed the technique of transfer learning to improve my results.  I chose to do this instead of trying to continue my current model because theres only so much I can do with my simple neural network.  The transfer learning models available from Tensorflow are extremely powerful and pretrained for much longer than I ever could with my model making them perfect for this problem.  The transfer model I chose to use is the Inception-ResNet V2 using the pretrained imagenet weights.  Using this model proved to be extremely successful!  Using this technique I was able to get my training accuracy to 99.99% and my validation accuracy to 60% which is a massive improvment!  Below is is an example of what the model looks like trained to 1000 epochs which is excessive, but I wanted to see where all of my accuracies and losses were moving to and whether they were still improving or not.
 
 <p align="center">
-    <img src="thousand_epochs.png" size = '600x600'/>
+    <img src="thousand_epochs.png" size = '400x400'/>
 </p>
-<br/>
-This is still only trained on the five classes, but I believe it is good enough to be able to move onto the full 254 classes.  
+<br>
+This is not bad for trainging on five classes.  It is time to move onto the full 264 classes.
+
+## Full dataset
+Below are my results after 200 epochs of training on AWS for the full 264 classes.  Random guessing in this case is 1/264 or .038% accuracy.  My neural network is overfitting to the training data a bit, which is a consequence of using such a powerful and large neural network.  I will be continuing to imrpove the model to the best it can get to.
+<br>
+<p align="center">
+    <img src="thousand_epochs.png" size = '400x400'/>
+</p>
+
