@@ -35,7 +35,7 @@ In an attempt to improve my model I employed the technique of transfer learning 
 This is not bad for trainging on five classes.  It is time to move onto the full 264 classes.
 
 ## Full dataset
-Below are my results after 200 epochs of training on AWS for the full 264 classes.  My model was able to achieve a 96% accuracy on trainging data for 264 classes.  My neural network is overfitting to the training data a bit, which is a consequence of using such a powerful and large neural network.  I will be continuing to imrpove the model to the best it can get to.
+Below are my results after 200 epochs of training on AWS for the full 264 classes.  My model was able to achieve a 96% accuracy on training data for 264 classes.  My neural network is overfitting to the training data a bit, which is a consequence of using such a powerful and large neural network.  I will be continuing to improve the model.
 <br>
 <p align="center">
     <img src="mkdown_imgs/full_data_200.png" size = '400x400'/>
